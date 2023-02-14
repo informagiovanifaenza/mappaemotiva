@@ -24,29 +24,8 @@
 </head>
 
 <body onload="mostraTipologia('')">
-
-    <nav>
-        <div class=" menu-icon">
-            <i class="fas fa-bars" id="icon"></i>
-        </div>
-        <ul class="nav-links">
-            <li> <a class="link" href="./index.html">Home</a> </li>
-             <li> <a class="link" href="chi_siamo.html">Chi siamo</a> </li>
-             <li> <a class="link" href="http://www.informagiovanifaenza.it/news/">News</a> </li>
-             <li> <a class="link" href="http://www.informagiovaniravenna.it/newsletter-2/">Newsletters</a> </li>
-             <li> <a class="link" href="informagiovani.html">Informagiovani <br/>nella tua citt&agrave</a></li>
-            <li> <a class="link" href="http://www.informagiovanifaenza.it/progetti/">Progetti</a></li>
-             <li> <a class="link" href="applichiamoci.html">Applichiamoci</a> </li>
-             <li> <a class="link" href="consulta_ragazzi.html">Consulta dei ragazzi</a> </li>
-			 <li> <a class="link" href="reputazione.html">Reputazione digitale</a> </li>
-            <li> <a class="link" href="http://www.informagiovanifaenza.it/video">Video</a></li>
-             <li> <a class="link" href="contatti.html">Contatti e orari</a> </li>
-
-        </ul>
-    </nav>
-
     <div class="logo">
-        <div class=logo img><img class="logo" src=".\img\logo-informagiovani.png" /></div>
+        <div class=logo img><img class="logo" src=".\img\librazione.png" /></div>
     </div>
 
     <div class="app" id="map_app">	
@@ -98,13 +77,32 @@
                 <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1.04805e+06px, 697379px, 0px) scale(4096);"></div>
             </div>
         </div>
+		
+		<div id="dettagli">
+			<h1 class="title" id="luogo"></h1>
+            <img src="" id="img_info" alt="immagine della pagina di informazioni di un luogo" />
+            <p><b>Tipologia:</b> <span id="tipologia"></span></p>
+            <p><b>emozioni:</b> <span id="emozioni"></span></p>
+            <p><b>indirizzo:</b> <span id="indirizzo"></span></p>
+            <!--<p><b>latitudine:</b> <span id="latitudine"></span></p>
+            <p><b>longitudine:</b> <span id="longitudine"></span></p> -->
+			<p><b>posizione:</b> <a id="posizione"></a> </p>
+            <p><b>descrizione:</b> <span id="descrizione"></span></p>
+            <p><b>curiosità:</b> <span id="curiosita"></span></p>
+            <p><b>devi provare:</b> <span id="daProvare"></span></p>
+            <p><b>link:</b>
+                <a id="link"></a>
+            </p>
+			<!-- qui va inserito il codice html per mostrare la prima immagine -->
+			<!-- qui va inserito il codice html per mostrare la seconda immagine, se presente -->
+		</div>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/menu_new.js"></script>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="js/mappa.js"></script>
-
+		<script src="js/script.js"></script>
 </body>
 
 </html>

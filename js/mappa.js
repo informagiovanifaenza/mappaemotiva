@@ -20,9 +20,11 @@ function readFromFile() {
 }
 
 function mostraTipologia(tipologia) {
-    mymap.remove();
+    // gestire la geolocalizzazione
+	mymap.remove();
     mymap = null;
     mymap = L.map('Map').setView([44.285268464566485, 11.882925129689992], 13);
+	
     var cluster = L.markerClusterGroup();
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -57,7 +59,9 @@ function mostraTipologia(tipologia) {
         i++;
     }
     mymap.addLayer(cluster);
-    makeUL(toAddToList, tipologia);
+    
+	// non creare più la lista da mostrare
+	//makeUL(toAddToList, tipologia);
 }
 
 function createMarker(lat, lon, luogo, numero, tipologia) {
@@ -125,10 +129,19 @@ function createMarker(lat, lon, luogo, numero, tipologia) {
                 shadowSize: [41, 41]
             });
     }
+	
+	//  elaborare il marcatore affinché sia cliccabile
     return L.marker([lat, lon], { icon: ColorIcon }).bindPopup("<b>" + numero + ": " + luogo + "</b>");
 }
 
-function makeUL(array, tipologia) {
+// creare qui la funzione che permetta di mostrare o nascondere il blocco dei dettagli
+// e di riempirlo con i particolari dello specifico marcatore cliccato
+
+
+// funzione da eliminare: caricando i dettagli subito sotto la mappa, 
+// non si costruisce la lista dei punti filtrati, ma si mostra solo 
+// quello cliccato nei suoi dettagli
+/*function makeUL(array, tipologia) {
 
     var pageBody = document.getElementById("mapPage");
 
@@ -201,9 +214,11 @@ function makeUL(array, tipologia) {
     }
     // Finally, return the constructed list:
     pageBody.appendChild(list);
-}
+}*/
 
-function newPage(luogo, tipologia, emozioni, indirizzo, latitudine, longitudine, descrizione, curiosita, deviProvare, link, url_img) {
+// non più necessaria per la mappa standalone, perché i dettagli sono caricati 
+// nella pagina, sotto la mappa
+/*function newPage(luogo, tipologia, emozioni, indirizzo, latitudine, longitudine, descrizione, curiosita, deviProvare, link, url_img) {
 
     window.localStorage.removeItem("luogo");
     window.localStorage.removeItem("tipologia");
@@ -230,4 +245,4 @@ function newPage(luogo, tipologia, emozioni, indirizzo, latitudine, longitudine,
     window.localStorage.setItem("url_img", url_img);
 
     window.open("dettagli.html", "_self");
-}
+}*/
