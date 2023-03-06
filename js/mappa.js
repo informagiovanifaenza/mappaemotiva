@@ -102,9 +102,9 @@ function createMarker(lat, lon, luogo, numero, tipologia) {
                 iconUrl: 'https://raw.githubusercontent.com/informagiovanifaenza/mappaemotiva/main/img/mappa_immagini/IconaGreen.png',
                 shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
                 iconSize: [27, 38],
-                iconAnchor: [-20, 51],
+                iconAnchor: [12, 41],
                 popupAnchor: [1, -34],
-                shadowSize: [60, 60]
+                shadowSize: [41, 41]
             });
             break;
         case 'U':
