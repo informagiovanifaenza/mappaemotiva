@@ -1,3 +1,7 @@
+body {
+	background-color: #ede9db;
+	
+}
 #Map {
     width: 100%;
     height: 50%;
@@ -7,7 +11,7 @@
 }
 
 #buttonContainer {
-    display: flex;
+    display: center;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -28,15 +32,17 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #2085b1;
+    background-color: #22358c;
+    border-radius: 12px;
+    border: 3px solid #0f173e;
 }
 
 #bSport:hover {
-    background-color: #1b6e92;
+    background-color: #1c2c73;
 }
 
 #bSport:active {
-    background-color: #2085b1;
+    background-color: #22358c;
     box-shadow: 0 5px #666;
 }
 
@@ -46,15 +52,17 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #ffc70a;
+    background-color: #eba432;
+    border-radius: 12px;
+    border: 3px solid #462e07;
 }
 
 #bStorico:hover {
-    background-color: #d6a60a;
+    background-color: #df9216;
 }
 
 #bStorico:active {
-    background-color: #ffc70a;
+    background-color: #eba432;
     box-shadow: 0 5px #666;
 }
 
@@ -64,15 +72,19 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #e40f76;
+    background-color: #c43133;
+    border-radius: 12px;
+    border: 3px solid #521415;
+    transition: 0.5s;
 }
 
 #bBaracca:hover {
-    background-color: #c40d65;
+    background-color: #a3292b;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #bBaracca:active {
-    background-color: #e40f76;
+    background-color: #c43133;
     box-shadow: 0 5px #666;
 }
 
@@ -82,15 +94,18 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #68830e;
+    background-color: #86aa6d;
+    border-radius: 12px;
+    border: 3px solid #25301c;
+    
 }
 
 #bGreen:hover {
-    background-color: #5c740e;
+    background-color: #759a5b;
 }
 
 #bGreen:active {
-    background-color: #68830e;
+    background-color: #86aa6d;
     box-shadow: 0 5px #666;
 }
 
@@ -100,15 +115,18 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #94271f;
+    background-color: #792d89;
+    border-radius: 12px;
+    border: 3px solid #33133a;
+    
 }
 
 #bUtilita:hover {
-    background-color: #7e211a;
+    background-color: #60236c;
 }
 
 #bUtilita:active {
-    background-color: #94271f;
+    background-color: #792d89;
     box-shadow: 0 5px #666;
 }
 
@@ -118,15 +136,17 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #b26c01;
+    background-color: #8c92ac;
+    border-radius: 12px;
+    border: 3px solid #20222c;
 }
 
 #bTutti:hover {
-    background-color: #a16101;
+    background-color: #7d83a1;
 }
 
 #bTutti:active {
-    background-color: #b26c01;
+    background-color: #8c92ac;
     box-shadow: 0 5px #666;
 }
 
