@@ -4,6 +4,41 @@ readFromFile();
 
 var mymap = L.map('Map').setView([44.285268464566485, 11.882925129689992], 13);
 
+if(!navigator.geolocation){
+    console.log('Il browser non supporta la geolocalizzazione.')
+} else {
+    setInterval(() => {
+        navigator.geolocation.getCurrentPosition(getPosition)
+    }, 1000);
+}
+
+var marker,circle; 
+
+function getPosition(position){
+    // console.log(position)
+    var lat = position.coords.latitude
+    var long = position.coords.longitude
+    var accuracy = position.coords.accuracy
+
+    if(mymap.hasLayer(marker)) {
+        mymap.removeLayer(marker)
+    }
+
+    if(mymap.hasLayer(circle)) {
+        mymap.removeLayer(circle)
+    }
+
+    marker = L.marker([lat,long])
+    circle = L.circle([lat,long],{radius: 15})
+
+    var featureGroup = L.featureGroup([marker,circle]).addTo(mymap)
+
+    //mymap.fitBounds(featureGroup.getBounds())
+
+    console.log(lat+'|'+long+'|'+accuracy)
+
+}
+
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors,' +
@@ -49,7 +84,7 @@ function mostraTipologia(tipologia) {
             }
             try {
                 j++;
-                var marker = createMarker(lat, lon, luogo, j, codice);
+                var marker = createMarker(mapArray[i],lat, lon, luogo, j, codice);
                 cluster.addLayer(marker);
             } catch (e) {
                 console.error(e.message);
@@ -64,7 +99,7 @@ function mostraTipologia(tipologia) {
 	//makeUL(toAddToList, tipologia);
 }
 
-function createMarker(lat, lon, luogo, numero, tipologia) {
+function createMarker(info, lat, lon, luogo, numero, tipologia) {
     tipologia = tipologia.charAt(0);
     switch (tipologia) {
         case 'B':
@@ -130,8 +165,32 @@ function createMarker(lat, lon, luogo, numero, tipologia) {
             });
     }
 	
-	//  elaborare il marcatore affinché sia cliccabile
-    return L.marker([lat, lon], { icon: ColorIcon }).bindPopup("<b>" + numero + ": " + luogo + "</b>");
+	//elaborare il marcatore affinché sia cliccabile
+    var link = document.createElement('b');
+    link.setAttribute("onclick", 'dettagli_marker("' + info.LUOGO + '", "' + info.TIPOLOGIA + '", "' + info.EMOZIONI + '", "' + info.INDIRIZZO + '", "' + info.LATITUDINE + '", "' + info.LONGITUDINE + '", "' + info.DESCRIZIONE + '", "' + info.CURIOSITA + '", "' + info.DEVIPROVARE + '", "' + info.LINK + '");');
+    link.innerHTML = numero+': '+info.LUOGO
+    return L.marker([lat, lon], { icon: ColorIcon }).bindPopup(link)
+    
+}
+
+function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudine,descrizione,curiosita,daProvare,link){
+    document.getElementById("luogo").textContent = luogo;
+    document.getElementById("tipologia").textContent = tipologia;
+    document.getElementById("emozioni").textContent = emozioni;
+    document.getElementById("indirizzo").textContent = indirizzo;
+    /*document.getElementById("latitudine").textContent = latitudine;
+    document.getElementById("longitudine").textContent = longitudine;*/
+    document.getElementById("posizione").href = coord;
+    document.getElementById("posizione").textContent = longitudine+","+latitudine;
+    document.getElementById("descrizione").textContent = descrizione;
+    document.getElementById("curiosita").textContent = curiosita;
+    document.getElementById("daProvare").textContent = daProvare;
+    document.getElementById("link").href = link;
+    document.getElementById("link").textContent = link;
+    if (!(url_img === "")) {
+        document.getElementById("img_info").style.display = "block";
+        document.getElementById("img_info").src = url_img;
+    }
 }
 
 // creare qui la funzione che permetta di mostrare o nascondere il blocco dei dettagli
