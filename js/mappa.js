@@ -78,11 +78,7 @@ function mostraTipologia(tipologia) {
     var toAddToList = [];
     i = 0;
     j = 0; // conta il numero di elementi della tipologia. Inizialmente è a 0.
-<<<<<<< HEAD
 	//alert(mapArray.length);
-=======
-	alert(mapArray.length);
->>>>>>> branch 'devel' of https://github.com/informagiovanifaenza/mappaemotiva.git
     while (i < mapArray.length) {
         if (mapArray[i].CODICE.includes(tipologia)) {
             var lat = mapArray[i].LATITUDINE;
@@ -95,13 +91,8 @@ function mostraTipologia(tipologia) {
             }
             try {
                 j++;
-<<<<<<< HEAD
 				/*if (mapArray[i].LUOGO == 'Rione Borgo Durbecco')
 					alert(mapArray[i].LUOGO);*/
-=======
-				if (mapArray[i].LUOGO == 'Rione Borgo Durbecco')
-					alert(mapArray[i].LUOGO);
->>>>>>> branch 'devel' of https://github.com/informagiovanifaenza/mappaemotiva.git
                 var marker = createMarker(mapArray[i],lat, lon, luogo, j, codice);
                 cluster.addLayer(marker);
             } catch (e) {
