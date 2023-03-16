@@ -2,7 +2,7 @@ var mapArray;
 
 readFromFile();
 
-var mymap = L.map('Map').setView([44.285268464566485, 11.882925129689992], 13);
+var mymap = L.map('Map').setView([0, 0], 13);
 
 if(!navigator.geolocation){
     console.log('Il browser non supporta la geolocalizzazione.')
@@ -15,9 +15,8 @@ if(!navigator.geolocation){
 var marker,circle; 
 
 function getPosition(position){
-    // console.log(position)
-    var lat = position.coords.latitude
-    var long = position.coords.longitude
+    var latitude = position.coords.latitude
+    var longitude = position.coords.longitude
     var accuracy = position.coords.accuracy
 
     if(mymap.hasLayer(marker)) {
@@ -28,12 +27,12 @@ function getPosition(position){
         mymap.removeLayer(circle)
     }
 
-    marker = L.marker([lat,long])
-    circle = L.circle([lat,long],{radius: 15})
+    marker = L.marker([latitude,longitude])
+    circle = L.circle([latitude,longitude],{radius: 15})
 
     var featureGroup = L.featureGroup([marker,circle]).addTo(mymap)
 
-    //mymap.fitBounds(featureGroup.getBounds())
+    // mymap.fitBounds(featureGroup.getBounds())
 
     console.log(lat+'|'+long+'|'+accuracy)
 
@@ -51,14 +50,21 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 function readFromFile() {
     d3.tsv("https://www.informagiovanifaenza.it/applichiamoci_map_points/mappa.tsv", function(d) {
         mapArray = d;
+        //mostraTipologia('');
     });
 }
 
 function mostraTipologia(tipologia) {
+	if (!mapArray) {
+        return;
+    }
+	
     // gestire la geolocalizzazione
 	mymap.remove();
     mymap = null;
     mymap = L.map('Map').setView([44.285268464566485, 11.882925129689992], 13);
+	
+	navigator.geolocation.getCurrentPosition(getPosition);
 	
     var cluster = L.markerClusterGroup();
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -72,6 +78,7 @@ function mostraTipologia(tipologia) {
     var toAddToList = [];
     i = 0;
     j = 0; // conta il numero di elementi della tipologia. Inizialmente è a 0.
+	alert(mapArray.length);
     while (i < mapArray.length) {
         if (mapArray[i].CODICE.includes(tipologia)) {
             var lat = mapArray[i].LATITUDINE;
@@ -84,19 +91,19 @@ function mostraTipologia(tipologia) {
             }
             try {
                 j++;
+				if (mapArray[i].LUOGO == 'Rione Borgo Durbecco')
+					alert(mapArray[i].LUOGO);
                 var marker = createMarker(mapArray[i],lat, lon, luogo, j, codice);
                 cluster.addLayer(marker);
             } catch (e) {
                 console.error(e.message);
             }
-            toAddToList.push(mapArray[i]);
+
         }
         i++;
     }
     mymap.addLayer(cluster);
     
-	// non creare più la lista da mostrare
-	//makeUL(toAddToList, tipologia);
 }
 
 function createMarker(info, lat, lon, luogo, numero, tipologia) {
@@ -164,16 +171,29 @@ function createMarker(info, lat, lon, luogo, numero, tipologia) {
                 shadowSize: [41, 41]
             });
     }
+		
+	var marker = L.marker([lat, lon], { icon: ColorIcon }).bindPopup("<b>" + numero + ": " + luogo + "</b>");
+    marker.on('popupopen', function(){
+        var img = "";
+        if (!(typeof info.IMMAGINE === "undefined")) {
+            img = info.IMMAGINE;
+        }
+        dettagli_marker(info.LUOGO, info.TIPOLOGIA, info.EMOZIONI, info.INDIRIZZO, info.LONGITUDINE, info.LATITUDINE, info.DESCRIZIONE, info.CURIOSITA, info.DEVIPROVARE, info.LINK, img);
+    });
 	
-	//elaborare il marcatore affinché sia cliccabile
-    var link = document.createElement('b');
-    link.setAttribute("onclick", 'dettagli_marker("' + info.LUOGO + '", "' + info.TIPOLOGIA + '", "' + info.EMOZIONI + '", "' + info.INDIRIZZO + '", "' + info.LATITUDINE + '", "' + info.LONGITUDINE + '", "' + info.DESCRIZIONE + '", "' + info.CURIOSITA + '", "' + info.DEVIPROVARE + '", "' + info.LINK + '");');
-    link.innerHTML = numero+': '+info.LUOGO
-    return L.marker([lat, lon], { icon: ColorIcon }).bindPopup(link)
+    marker.on('popupclose', function(){
+        document.getElementById("dettagli").style.display = "none";
+    });
+    return marker;
     
 }
 
-function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudine,descrizione,curiosita,daProvare,link){
+function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudine,descrizione,curiosita,daProvare,link,url_img){
+    var coord = new URL("http://maps.google.com/")
+    coord.searchParams.append("ie", "UTF8");
+    coord.searchParams.append("hq", "");
+    coord.searchParams.append("ll", latitudine+","+longitudine);
+
     document.getElementById("luogo").textContent = luogo;
     document.getElementById("tipologia").textContent = tipologia;
     document.getElementById("emozioni").textContent = emozioni;
@@ -187,121 +207,12 @@ function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudi
     document.getElementById("daProvare").textContent = daProvare;
     document.getElementById("link").href = link;
     document.getElementById("link").textContent = link;
-    if (!(url_img === "")) {
+    if (url_img === "") {
+        document.getElementById("img_info").style.display = "none";
+    } else {
         document.getElementById("img_info").style.display = "block";
         document.getElementById("img_info").src = url_img;
     }
+
+    document.getElementById("dettagli").style.display = "block";
 }
-
-// creare qui la funzione che permetta di mostrare o nascondere il blocco dei dettagli
-// e di riempirlo con i particolari dello specifico marcatore cliccato
-
-
-// funzione da eliminare: caricando i dettagli subito sotto la mappa, 
-// non si costruisce la lista dei punti filtrati, ma si mostra solo 
-// quello cliccato nei suoi dettagli
-/*function makeUL(array, tipologia) {
-
-    var pageBody = document.getElementById("mapPage");
-
-    // Create the list element:
-    try {
-        pageBody.removeChild(document.getElementById("list"));
-    } catch (e) {}
-
-    var list = document.createElement('ol');
-
-    list.id = "list";
-
-    for (var i = 0; i < array.length; i++) {
-        // Create the list item:
-        var item = document.createElement('li');
-
-        var link = document.createElement('button');
-
-        // prova
-        // array[i].IMMAGINE = "img/carlo.png";
-
-        var img = "";
-
-        if (!(typeof array[i].IMMAGINE === "undefined")) {
-            img = array[i].IMMAGINE;
-        }
-
-        link.setAttribute("onclick", 'newPage("' + array[i].LUOGO + '", "' + array[i].TIPOLOGIA + '", "' + array[i].EMOZIONI + '", "' + array[i].INDIRIZZO + '", "' + array[i].LATITUDINE + '", "' + array[i].LONGITUDINE + '", "' + array[i].DESCRIZIONE + '", "' + array[i].CURIOSITA + '", "' + array[i].DEVIPROVARE + '", "' + array[i].LINK + '", "' + img + '");');
-
-        link.class = "listElement";
-
-        link.innerHTML = array[i].LUOGO;
-
-        if (tipologia === '') {
-            var codice = mapArray[i].CODICE;
-        } else {
-            var codice = tipologia;
-        }
-
-        switch (codice.charAt(0)) {
-            case 'B':
-                link.style.backgroundColor = "#e40f76";
-                break;
-            case 'C':
-                link.style.backgroundColor = "#ffc70a";
-                break;
-            case 'S':
-                link.style.backgroundColor = "#2085b1";
-                break;
-            case 'G':
-                link.style.backgroundColor = "#68830e";
-                break;
-            case 'U':
-                link.style.backgroundColor = "#94271f";
-                break;
-            default:
-                link.style.backgroundColor = "#b26c01";
-        }
-
-        link.style.color = "#FFFFFF";
-        link.style.fontWeight = "bold";
-        link.style.padding = "20px";
-
-
-        item.appendChild(link);
-
-
-        // Add it to the list:
-        list.appendChild(item);
-    }
-    // Finally, return the constructed list:
-    pageBody.appendChild(list);
-}*/
-
-// non più necessaria per la mappa standalone, perché i dettagli sono caricati 
-// nella pagina, sotto la mappa
-/*function newPage(luogo, tipologia, emozioni, indirizzo, latitudine, longitudine, descrizione, curiosita, deviProvare, link, url_img) {
-
-    window.localStorage.removeItem("luogo");
-    window.localStorage.removeItem("tipologia");
-    window.localStorage.removeItem("emozioni");
-    window.localStorage.removeItem("indirizzo");
-    window.localStorage.removeItem("latitudine");
-    window.localStorage.removeItem("longitudine");
-    window.localStorage.removeItem("descrizione");
-    window.localStorage.removeItem("curiosita");
-    window.localStorage.removeItem("deviProvare");
-    window.localStorage.removeItem("link");
-    window.localStorage.removeItem("url_img");
-
-    window.localStorage.setItem("luogo", luogo);
-    window.localStorage.setItem("tipologia", tipologia);
-    window.localStorage.setItem("emozioni", emozioni);
-    window.localStorage.setItem("indirizzo", indirizzo);
-    window.localStorage.setItem("latitudine", latitudine);
-    window.localStorage.setItem("longitudine", longitudine);
-    window.localStorage.setItem("descrizione", descrizione);
-    window.localStorage.setItem("curiosita", curiosita);
-    window.localStorage.setItem("deviProvare", deviProvare);
-    window.localStorage.setItem("link", link);
-    window.localStorage.setItem("url_img", url_img);
-
-    window.open("dettagli.html", "_self");
-}*/

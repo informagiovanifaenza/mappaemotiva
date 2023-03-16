@@ -26,6 +26,10 @@ body {
 	font-size: 12px;
 }
 
+#dettagli {
+	display: none
+}
+
 #bSport {
     color: white;
     padding: 16px;
