@@ -78,7 +78,7 @@ function mostraTipologia(tipologia) {
     var toAddToList = [];
     i = 0;
     j = 0; // conta il numero di elementi della tipologia. Inizialmente è a 0.
-	alert(mapArray.length);
+	//alert(mapArray.length);
     while (i < mapArray.length) {
         if (mapArray[i].CODICE.includes(tipologia)) {
             var lat = mapArray[i].LATITUDINE;
@@ -91,8 +91,8 @@ function mostraTipologia(tipologia) {
             }
             try {
                 j++;
-				if (mapArray[i].LUOGO == 'Rione Borgo Durbecco')
-					alert(mapArray[i].LUOGO);
+				/*if (mapArray[i].LUOGO == 'Rione Borgo Durbecco')
+					alert(mapArray[i].LUOGO);*/
                 var marker = createMarker(mapArray[i],lat, lon, luogo, j, codice);
                 cluster.addLayer(marker);
             } catch (e) {
