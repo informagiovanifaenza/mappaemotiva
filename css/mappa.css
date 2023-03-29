@@ -1,5 +1,6 @@
 body {
 	background-color: #ff914d;/*#ede9db;*/
+	margin: 0;
 	
 }
 #Map {
@@ -200,4 +201,57 @@ h1.title {
   align-items: center;
   justify-content: space-around;
   float: right;
+}
+
+article, div#dettagli {
+	  /*background-color: #ffffff;*/
+	  font-family: Arial, Roboto, Helvetica, sans-serif;
+	  color: #ffffff;
+	  font-weight: 350;
+	  text-rendering: optimizeLegibility;
+	  padding: 1px 15px 1px 15px;
+	  margin-bottom: 10px;
+}
+
+header {
+	padding: 1px 15px 1px 15px;
+	margin: 15px 0px;
+	height: 150px;
+}
+
+header span#label {
+	font-family: Arial, Roboto, Helvetica, sans-serif;
+	color: #ffffff;
+	font-weight: 600;
+	padding-bottom: 10px;
+}
+
+header img {
+	height: 50px
+}
+
+header #finanziamento {
+	display: inline-block;
+}
+
+header #attuatori {
+	display: inline-block;
+	text-align: right;
+	float: right;
+	position: relative;
+}
+
+div#banner {
+	background-color: #ffffff;
+	padding: 1px 15px 1px 15px;
+	margin: 0px;
+	/*margin-bottom: 10px;*/
+}
+
+#banner img{
+	width: 100%
+}
+
+footer {
+	border-top: 1px solid #ffffff;
 }
