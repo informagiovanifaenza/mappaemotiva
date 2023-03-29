@@ -186,11 +186,14 @@ function createMarker(info, lat, lon, luogo, numero, tipologia) {
 		
 	var marker = L.marker([lat, lon], { icon: ColorIcon }).bindPopup("<b>" + numero + ": " + luogo + "</b>");
     marker.on('popupopen', function(){
-        var img = "";
-        if (!(typeof info.IMMAGINE === "undefined")) {
-            img = info.IMMAGINE;
+        var img = img2 = "";
+        if (!(typeof info.FOTO === "undefined")) {
+            img = info.FOTO;
         }
-        dettagli_marker(info.LUOGO, info.TIPOLOGIA, info.EMOZIONI, info.INDIRIZZO, info.LONGITUDINE, info.LATITUDINE, info.DESCRIZIONE, info.CURIOSITA, info.DEVIPROVARE, info.LINK, img);
+		if (!(typeof info.FOTO2 === "undefined")) {
+            img2 = info.FOTO2;
+        }
+        dettagli_marker(info.LUOGO, info.TIPOLOGIA, info.EMOZIONI, info.INDIRIZZO, info.LONGITUDINE, info.LATITUDINE, info.DESCRIZIONE, info.CURIOSITA, info.DEVIPROVARE, info.LINK, img, img2);
     });
 	
     marker.on('popupclose', function(){
@@ -200,7 +203,7 @@ function createMarker(info, lat, lon, luogo, numero, tipologia) {
     
 }
 
-function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudine,descrizione,curiosita,daProvare,link,url_img){
+function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudine,descrizione,curiosita,daProvare,link,url_img, url_img2){
     var coord = new URL("http://maps.google.com/")
     coord.searchParams.append("ie", "UTF8");
     coord.searchParams.append("hq", "");
@@ -217,14 +220,28 @@ function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudi
     document.getElementById("descrizione").textContent = descrizione;
     document.getElementById("curiosita").textContent = curiosita;
     document.getElementById("daProvare").textContent = daProvare;
-    document.getElementById("link").href = link;
-    document.getElementById("link").textContent = link;
-    if (url_img === "") {
-        document.getElementById("img_info").style.display = "none";
+	if (link === "") {
+		document.getElementById("link").href = "URL:void(0)";
+        document.getElementById("link").textContent = "n.d.";
+		document.getElementById("url").style.display = "none";
     } else {
-        document.getElementById("img_info").style.display = "block";
-        document.getElementById("img_info").src = url_img;
+		document.getElementById("link").href = link;
+		document.getElementById("link").textContent = link;
+		document.getElementById("url").style.display = "block";
+	}
+    if (url_img === "") {
+        document.getElementById("info1").style.display = "none";
+    } else {
+        document.getElementById("info1").style.display = "block";
+        document.getElementById("img_info1").src = url_img;
+    }
+	if (url_img2 === "") {
+        document.getElementById("info2").style.display = "none";
+    } else {
+        document.getElementById("info2").style.display = "block";
+        document.getElementById("img_info2").src = url_img2;
     }
 
     document.getElementById("dettagli").style.display = "block";
+	window.scrollTo(0, document.body.scrollHeight);
 }

@@ -24,12 +24,24 @@
 </head>
 
 <body onload="mostraTipologia('')">
-    <div class="logo">
-        <div class="logo img"><img class="logo" src=".\img\librazioneTrasp.png" /></div>
-		<div class="logo img"><img class="logo" src=".\img\mappaTrasp.png" /></div>
-    </div>
+	<header>
+		<div id="finanziamento">
+			<span id="label">Finanziamento L. 14/08</span><br /><br />
+			<span class="logo img"><img class="logo" src=".\img\emirom.png" /></span>
+		</div>
+		<div id="attuatori">
+			<span id="label">Soggetti attuatori</span><br /><br />
+			<span class="logo img"><img class="logo" src=".\img\librazione.png" /></span>
+			<span class="logo img"><img class="logo" src=".\img\serena.png" /></span><br />
+			<span class="logo img"><img class="logo" src=".\img\crescere.png" /></span>
+			<span class="logo img"><img class="logo" src=".\img\millepiedi.png" /></span>
+		</div>
+	</header>
+	<div id="banner">
+		<img class="logo" src=".\img\mappe.png" />
+	</div>
 	<article>
-	<h1>Ti emozioni ancora nella tua città?</h1>
+	<!-- <h1>Ti emozioni ancora nella tua città?</h1> -->
 	<p><b>Mappa Emotiva</b> è un progetto che ha avuto inizio nel 2021 grazie ad un’azione 
 	del progetto Formagiovani 4.0, finanziato dalla Legge Regionale 14/2008 e si è implementato 
 	grazie a un secondo finanziamento della Legge Regionale 14/2008 che ha visto come capofila 
@@ -108,8 +120,8 @@ territoriali.</p>
                     <div class="leaflet-top leaflet-right"></div>
                     <div class="leaflet-bottom leaflet-left"></div>
                     <div class="leaflet-bottom leaflet-right">
-                        <div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©
-                            <!-- <a href="https://www.mapbox.com/">Mapbox</a> -->
+                        <div class="leaflet-control-attribution leaflet-control"><!-- <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©
+                             <a href="https://www.mapbox.com/">Mapbox</a> -->
                         </div>
                     </div>
                 </div>
@@ -124,7 +136,12 @@ territoriali.</p>
 		
 		<div id="dettagli">
 			<h1 class="title" id="luogo"></h1>
-            <img src="" id="img_info" alt="immagine della pagina di informazioni di un luogo" />
+			<div id="info1">
+				<img id="img_info1" src="" alt="immagine della pagina di informazioni di un luogo" />
+			</div>
+			<div id="info2">
+				<img id="img_info2" src="" alt="seconda immagine della pagina di informazioni di un luogo" />
+			</div>
             <p><b>Tipologia:</b> <span id="tipologia"></span></p>
             <p><b>emozioni:</b> <span id="emozioni"></span></p>
             <p><b>indirizzo:</b> <span id="indirizzo"></span></p>
@@ -134,15 +151,15 @@ territoriali.</p>
             <p><b>descrizione:</b> <span id="descrizione"></span></p>
             <p><b>curiosità:</b> <span id="curiosita"></span></p>
             <p><b>devi provare:</b> <span id="daProvare"></span></p>
-            <p><b>link:</b>
+            <p id="url"><b>link:</b>
                 <a id="link"></a>
             </p>
 			<!-- qui va inserito il codice html per mostrare la prima immagine -->
 			<!-- qui va inserito il codice html per mostrare la seconda immagine, se presente -->
 		</div>
-		&nbsp;
-		<div>
-		</div>
+		<footer>
+			<div id="disclaimer"> La pagina è realizzata secondo standard HTML4/HTML5 e Javascript, grafica in CSS3.</div>
+		</footer>
         <!-- <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/menu_new.js"></script> -->
