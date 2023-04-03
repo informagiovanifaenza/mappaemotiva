@@ -3,19 +3,80 @@ body {
 	margin: 0;
 	
 }
+
+header {
+	padding: 1px 15px 1px 15px;
+	margin: 15px 0px;
+	height: 150px;
+}
+
+header span#label {
+	font-family: Arial, Roboto, Helvetica, sans-serif;
+	color: #ffffff;
+	font-weight: 600;
+	padding-bottom: 10px;
+}
+
+header img {
+	height: 50px
+}
+
+header #finanziamento {
+	display: inline-block;
+}
+
+header #attuatori {
+	display: inline-block;
+	text-align: right;
+	float: right;
+	position: relative;
+}
+
+article, div#dettagli {
+    font-family: Arial, Roboto, Helvetica, sans-serif;
+	font-size: 20px;
+	line-height:20px;
+	text-align:left;
+    padding: 1px 15px 1px 15px;
+	margin-bottom: 10px;
+    text-shadow: #bb5025;
+    color: #ffffff;/*blanchedalmond;*/
+   	text-rendering: optimizeLegibility;
+  /*colore del testo, tipo di testo, altre info sul testo*/
+}
+/*
+article, div#dettagli {
+	  /*background-color: #ffffff;*/
+	/*  font-family:  sans-serif;
+	  color: #ffffff;
+	  font-weight: 350;
+	  text-rendering: optimizeLegibility;
+	  padding: 1px 15px 1px 15px;
+	  margin-bottom: 10px;
+}*/
+
+
 #Map {
     width: 100%;
     height: 50%;
     position: relative;
     outline: thin;
     z-index: 1;
+	/*posizione e grandezza della mappa*/
 }
 
 #buttonContainer {
-    display: center;
+    whith: 100%;
+    display: flex;
     align-items: center;
+    position: relative;
+    top: 5px;
+    left:50px;
+    text-align:center;
+    z-index: 500;
     justify-content: center;
     flex-wrap: wrap;
+    /*contenitore dei bottoni dentro la mappa, posizione e dettagli (z-index non può scendere sotto a 400 attualmente*/
 }
 
 #disclaimer {
@@ -31,6 +92,11 @@ body {
 	display: none
 }
 
+/*da qui in poi si trovano i dettagli sui bottoni, nominati con 'b' seguito dal nome del bottone. Essi sono tutti uguali e sono divisi in una prima parte (es. bsport) con colore, 
+dimensione, posizione, forma ed altro; le ultime due righe impediscono la modifica della forma quando si apre il menù a tendina, la seconda parte, quindi in generale l'aspetto idle.
+La seconda parte (es bSport:hover), ne indica il funzionamento quando il mouse ci passa sopra ed infine la terza quando il bottone viene cliccato*/
+
+
 #bSport {
     color: white;
     padding: 16px;
@@ -40,10 +106,13 @@ body {
     background-color: #22358c;
     border-radius: 12px;
     border: 3px solid #0f173e;
+    margin: 1px;
+    max-height: 56px;
 }
 
 #bSport:hover {
     background-color: #1c2c73;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #bSport:active {
@@ -60,10 +129,13 @@ body {
     background-color: #eba432;
     border-radius: 12px;
     border: 3px solid #462e07;
+    margin: 1px;
+    max-height: 56px;
 }
 
 #bStorico:hover {
     background-color: #df9216;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #bStorico:active {
@@ -81,6 +153,8 @@ body {
     border-radius: 12px;
     border: 3px solid #521415;
     transition: 0.5s;
+    margin: 1px;
+    max-height: 56px;
 }
 
 #bBaracca:hover {
@@ -102,11 +176,14 @@ body {
     background-color: #86aa6d;
     border-radius: 12px;
     border: 3px solid #25301c;
+    margin: 1px;
+    max-height: 56px;
     
 }
 
 #bGreen:hover {
     background-color: #759a5b;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #bGreen:active {
@@ -123,11 +200,14 @@ body {
     background-color: #792d89;
     border-radius: 12px;
     border: 3px solid #33133a;
+    margin: 1px;
+    max-height: 56px;
     
 }
 
 #bUtilita:hover {
     background-color: #60236c;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #bUtilita:active {
@@ -144,10 +224,13 @@ body {
     background-color: #8c92ac;
     border-radius: 12px;
     border: 3px solid #20222c;
+    margin: 1px;
+    max-height: 56px;
 }
 
 #bTutti:hover {
     background-color: #7d83a1;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #bTutti:active {
@@ -203,42 +286,13 @@ h1.title {
   float: right;
 }
 
-article, div#dettagli {
-	  /*background-color: #ffffff;*/
-	  font-family: Arial, Roboto, Helvetica, sans-serif;
-	  color: #ffffff;
-	  font-weight: 350;
-	  text-rendering: optimizeLegibility;
-	  padding: 1px 15px 1px 15px;
-	  margin-bottom: 10px;
-}
-
-header {
-	padding: 1px 15px 1px 15px;
-	margin: 15px 0px;
-	height: 150px;
-}
-
-header span#label {
-	font-family: Arial, Roboto, Helvetica, sans-serif;
-	color: #ffffff;
-	font-weight: 600;
-	padding-bottom: 10px;
-}
-
-header img {
-	height: 50px
-}
-
-header #finanziamento {
-	display: inline-block;
-}
-
-header #attuatori {
-	display: inline-block;
-	text-align: right;
-	float: right;
-	position: relative;
+#puntatore_gps {
+    text-align: center;
+    width: 31px;
+    height: 31px;
+    margin-bottom: 25px;
+    margin-left: 10px;
+    border-radius: 5px;
 }
 
 div#banner {
