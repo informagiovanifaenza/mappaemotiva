@@ -88,7 +88,8 @@ territoriali.</p>
 	</article>
     <div class="app" id="map_app">	
         <div class="page" id="mapPage">
-			<div id="buttonContainer">
+            <div id="Map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+                <div id="buttonContainer">
 			
                 <button id="bBaracca" onclick="mostraTipologia('B')">
                     <span class="bottoniSpan">Far Baracca</span>
@@ -108,9 +109,11 @@ territoriali.</p>
                 <button id="bTutti" onclick="mostraTipologia('')">
                     <span class="bottoniSpan">Visualizza tutti</span>
                 </button>
-            </div> <br> <br>
-            <div id="Map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
-                <div class="leaflet-control-container">
+				<div class="selected">
+                            Area 
+                          </div>
+				</div> 
+				<div class="leaflet-control-container">
                     <div class="leaflet-top leaflet-left">
                         <div class="leaflet-control-zoom leaflet-bar leaflet-control">
                             <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a>
