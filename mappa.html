@@ -27,14 +27,14 @@
 	<header>
 		<div id="finanziamento">
 			<span id="label">Finanziamento L. 14/08</span><br /><br />
-			<span class="logo img"><img class="logo" src=".\img\emirom.png" /></span>
+			<a class="logo img" href="https://www.regione.emilia-romagna.it/" target="_blank"><img class="logo" src=".\img\emirom.png" /></a>
 		</div>
 		<div id="attuatori">
 			<span id="label">Soggetti attuatori</span><br /><br />
-			<span class="logo img"><img class="logo" src=".\img\librazione.png" /></span>
-			<span class="logo img"><img class="logo" src=".\img\serena.png" /></span><br />
-			<span class="logo img"><img class="logo" src=".\img\crescere.png" /></span>
-			<span class="logo img"><img class="logo" src=".\img\millepiedi.png" /></span>
+			<a class="logo img" href="https://librazione.org/" target="_blank"><img class="logo" src=".\img\librazione.png" /></a>
+			<a class="logo img" href="https://www.coopserena.it/" target="_blank"><img class="logo" src=".\img\serena.png" /></a><br />
+			<a class="logo img" href="https://www.progettocrescere.re.it/" target="_blank"><img class="logo" src=".\img\crescere.png" /></a>
+			<a class="logo img" href="https://www.ilmillepiedi.it/" target="_blank"><img class="logo" src=".\img\millepiedi.png" /></a>
 		</div>
 	</header>
 	<div id="banner">
@@ -90,7 +90,7 @@ territoriali.</p>
         <div class="page" id="mapPage">
             <div id="Map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
                 <div id="buttonContainer">
-			
+				<div id="filter">
                 <button id="bBaracca" onclick="mostraTipologia('B')">
                     <span class="bottoniSpan">Far Baracca</span>
                 </button>
@@ -109,16 +109,41 @@ territoriali.</p>
                 <button id="bTutti" onclick="mostraTipologia('')">
                     <span class="bottoniSpan">Visualizza tutti</span>
                 </button>
-				<div class="selected">
+				</div>
+				<div id="tendina">
+                    <div class="container">
+                        <div class="select-box">
+                        <div class="options-container">
+                            <div class="option">
+                            
+                            <label id="faenza_" >Faenza</label>
+                            </div>
+							
+							<div class="option"> 
+                            <label id="fiscaglia_">Fiscaglia</label>
+                            </div>
+                
+                            <div class="option">
+                            <label id="reggio_">Reggio Emilia</label>
+                            </div>
+                
+                            <div class="option"> 
+                            <label id="valmarecchia_">Valmarecchia</label>
+                            </div>
+                        </div>
+                
+                        <div class="selected">
                             Area 
-                          </div>
-				</div> 
+                        </div>
+                        </div>
+                    </div>
+                </div>
 				<div class="leaflet-control-container">
                     <div class="leaflet-top leaflet-left">
-                        <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                        <!--<div class="leaflet-control-zoom leaflet-bar leaflet-control">
                             <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a>
                             <a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="leaflet-top leaflet-right"></div>
                     <div class="leaflet-bottom leaflet-left"></div>
@@ -135,7 +160,9 @@ territoriali.</p>
                 <div class="leaflet-pane leaflet-popup-pane"></div>
                 <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1.04805e+06px, 697379px, 0px) scale(4096);"></div>
             </div>
+			
         </div>
+		
 		
 		<div id="dettagli">
 			<h1 class="title" id="luogo"></h1>
@@ -145,6 +172,7 @@ territoriali.</p>
 			<div id="info2">
 				<img id="img_info2" src="" alt="seconda immagine della pagina di informazioni di un luogo" />
 			</div>
+			<div id="dati">
             <p><b>Tipologia:</b> <span id="tipologia"></span></p>
             <p><b>emozioni:</b> <span id="emozioni"></span></p>
             <p><b>indirizzo:</b> <span id="indirizzo"></span></p>
@@ -157,8 +185,7 @@ territoriali.</p>
             <p id="url"><b>link:</b>
                 <a id="link"></a>
             </p>
-			<!-- qui va inserito il codice html per mostrare la prima immagine -->
-			<!-- qui va inserito il codice html per mostrare la seconda immagine, se presente -->
+			</div>			
 		</div>
 		<footer>
 			<div id="disclaimer"> La pagina è realizzata secondo standard HTML4/HTML5 e Javascript, grafica in CSS3.</div>

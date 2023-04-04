@@ -7,9 +7,7 @@ var mymap = L.map('Map').setView([0, 0], 13);
 if(!navigator.geolocation){
     console.log('Il browser non supporta la geolocalizzazione.')
 } else {
-    setInterval(() => {
-        navigator.geolocation.getCurrentPosition(getPosition)
-    }, 1000);
+    navigator.geolocation.getCurrentPosition(getPosition)
 }
 
 var marker,circle; 
@@ -184,7 +182,7 @@ function createMarker(info, lat, lon, luogo, numero, tipologia) {
             });
     }
 		
-	var marker = L.marker([lat, lon], { icon: ColorIcon }).bindPopup("<b>" + numero + ": " + luogo + "</b>");
+	var marker = L.marker([lat, lon], { icon: ColorIcon }).bindPopup("<b>" + /*numero + ":  +*/ luogo + "</b>");
     marker.on('popupopen', function(){
         var img = img2 = "";
         if (!(typeof info.FOTO === "undefined")) {
@@ -245,3 +243,46 @@ function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudi
     document.getElementById("dettagli").style.display = "block";
 	window.scrollTo(0, document.body.scrollHeight);
 }
+
+const selected = document.querySelector(".selected");
+const optionsContainer = document.querySelector(".options-container");
+
+const optionsList = document.querySelectorAll(".option");
+
+selected.addEventListener("click", () => {
+  //inidirizzamento a cordinate di click
+    optionsContainer.classList.toggle("active");
+});
+
+optionsList.forEach(o => {
+  o.addEventListener("click", () => {
+    // console.log(o.querySelector("label").innerHTML) //cosi stampo la citta scelta
+    
+    
+
+    var paese_scelto = o.querySelector("label").id
+
+    if (paese_scelto == "reggio_"){
+
+        mymap.setView([44.698993, 10.629686], 12)
+
+    } else if (paese_scelto == "faenza_"){
+
+        mymap.setView([44.285268464566485, 11.882925129689992], 13)
+
+    } else if (paese_scelto == "valmarecchia_"){
+
+        mymap.setView([44.04938, 12.47190], 10)
+
+    } else if (paese_scelto == "fiscaglia_"){
+
+        mymap.setView([44.780250, 11.943190], 12)
+
+    }
+
+
+    selected.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainer.classList.remove("active");
+  });
+  
+});
