@@ -249,6 +249,116 @@ La seconda parte (es bSport:hover), ne indica il funzionamento quando il mouse c
     font-weight: bold;
 }
 
+#filter {
+	position: absolute;
+	top: 5px;
+}
+
+* {
+    /* margin: 0; */
+    box-sizing: border-box;
+  }
+
+#tendina{
+    z-index: 1;
+	
+}
+
+ /* .container {
+    
+    padding: 0px;
+    display: inline-block;
+  }*/
+  
+  .select-box {
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+	margin-top: 5px;
+	margin-left: 895px;
+  }
+  
+  /* box dietro */
+  
+  .select-box .options-container {
+    background: #36aea8; 
+    color: #f5f6fa;
+    max-height: 0;
+    width: 90%;
+    opacity: 0;
+    transition: all 0.4s;
+    overflow: hidden;
+    border-radius: 12px;
+    order: 1;
+    
+
+  }
+  /* box dietro */
+  
+  .selected {
+    background: #2596be;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #f5f6fa;
+    position: relative;
+    margin: 1px;
+    border: 3px solid #20222c;
+    order: 0;
+  }
+  /* box sopra */
+  
+  .selected::after {
+    content: "";
+    background: url("../img/freccia.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 5px;
+    top: 5px;
+    
+    transition: all 0.4s;
+  }
+  
+  .select-box .options-container.active {
+    max-height: 240px;
+    opacity: 1;
+    
+    /* overflow-y: scroll; */
+  }
+  
+  .select-box .options-container.active + .selected::after {
+    transform: rotateX(180deg);
+    top: -6px;
+    
+  }
+  
+  .select-box .options-container::-webkit-scrollbar-thumb {
+    background: #2596be;
+    border-radius: 0 8px 8px 0;
+    
+  }
+  
+  /* corposità */
+  .select-box .option,
+  .selected {
+    color: white;
+    
+    font-size: 16px;
+    font-weight: bold;
+    padding: 13px 13px;
+    cursor: pointer;
+    
+    border-radius: 12px;
+  }
+  
+  .select-box .option:hover {
+    background: #2596be;
+    
+  }
+
 #mapPage {
     text-align: left;
     width: 100%;
@@ -268,12 +378,24 @@ h1.title {
     text-align: center;
 }
 
-#img_info {
-    display: none;
+#info1, #info2 {
+	display: inline;
+	float: left;
+	margin-bottom:10px;
+	margin-right: 20px;
+}
+
+#img_info1, #img_info2 {
+    height: 300px;
+    width: auto;
 }
 
 #info_page p {
     padding: 10px;
+}
+
+#dati {
+	clear:both;
 }
 
 .nav-links
