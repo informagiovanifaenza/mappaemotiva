@@ -252,6 +252,7 @@ La seconda parte (es bSport:hover), ne indica il funzionamento quando il mouse c
 #filter {
 	position: absolute;
 	top: 5px;
+	z-index: 2;
 }
 
 * {
