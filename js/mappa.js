@@ -204,8 +204,8 @@ function createMarker(info, lat, lon, luogo, numero, tipologia) {
 function dettagli_marker(luogo,tipologia,emozioni,indirizzo,longitudine,latitudine,descrizione,curiosita,daProvare,link,url_img, url_img2){
     var coord = new URL("http://maps.google.com/")
     coord.searchParams.append("ie", "UTF8");
-    coord.searchParams.append("hq", "");
-    coord.searchParams.append("ll", latitudine+","+longitudine);
+    coord.searchParams.append("q", latitudine+","+longitudine);
+    coord.searchParams.append("ll", latitudine+","+longitudine+"&z=18");
 
     document.getElementById("luogo").textContent = luogo;
     document.getElementById("tipologia").textContent = tipologia;
